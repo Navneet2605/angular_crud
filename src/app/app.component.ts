@@ -33,7 +33,7 @@ export class AppComponent {
 
   createForm(){
     this.employeeForm = new FormGroup({
-      empid: new FormControl(this.employeeObj.empId),
+      empId: new FormControl(this.employeeObj.empId),
       name: new FormControl(this.employeeObj.name),
       city: new FormControl(this.employeeObj.city),
       address: new FormControl(this.employeeObj.address),
@@ -48,15 +48,39 @@ export class AppComponent {
     const oldData = localStorage.getItem("EmpData");
     if(oldData!= null){
       const  parseData = JSON.parse(oldData);
-      this.employeeForm.controls['empid'].setValue(parseData.length +1);
+      this.employeeForm.controls['empId'].setValue(parseData.length +1);
       this.employeeList.unshift(this.employeeForm.value);
     }else{
       this.employeeList.unshift(this.employeeForm.value); 
     }
-    localStorage.setItem("EmpData", JSON.stringify(this.employeeList))
+    localStorage.setItem("EmpData", JSON.stringify(this.employeeList));
+    this.employeeObj = new EmployeeModel();
+    this.createForm();
     }
     onEdit(item: EmployeeModel) {
       this.employeeObj = item;
       this.createForm();
+      }
+      onUpdate(){
+        const record = this.employeeList.find(m => m.empId ==  this.employeeForm.controls['empId'].value);
+        if(record != undefined){
+          record.address = this.employeeForm.controls['address'].value;
+          record.name = this.employeeForm.controls['name'].value;
+          record.contactNo = this.employeeForm.controls['contactNo'].value;
+          record.city = this.employeeForm.controls['city'].value;
+          record.pinCode = this.employeeForm.controls['pinCode'].value;
+          record.state = this.employeeForm.controls['state'].value;
+        }
+        localStorage.setItem("EmpData", JSON.stringify(this.employeeList));
+        this.employeeObj = new EmployeeModel();
+        this.createForm();
+      }
+      onDelete(id:number){
+        const isDelete = confirm("are you sure want to delete ?");
+        if(isDelete){
+          const index = this.employeeList.findIndex(m => m.empId == id);
+          this.employeeList.splice(index, 1);
+          localStorage.setItem("EmpData", JSON.stringify(this.employeeList));
+        }
       }
 }
