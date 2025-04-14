@@ -17,6 +17,5 @@ export class EmployeeModel{
         this.contactNo='';
         this.address='';
         this.pinCode='';
-
     }
 }

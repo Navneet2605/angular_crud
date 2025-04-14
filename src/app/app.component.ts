@@ -15,14 +15,13 @@ export class AppComponent {
   title(title: any) {
     throw new Error('Method not implemented.');
   }
-  employeeForm: FormGroup = new FormGroup({});
 
+  employeeForm: FormGroup = new FormGroup({});
   employeeObj: EmployeeModel = new EmployeeModel();
   employeeList: EmployeeModel[]=[];
 
   constructor(){
     this.createForm();
-    debugger;
     const oldData = localStorage.getItem("EmpData");
     if(oldData!= null){ 
       const parseData = JSON.parse(oldData);
@@ -44,7 +43,6 @@ export class AppComponent {
     })
   }
   onSave() {
-    debugger;
     const oldData = localStorage.getItem("EmpData");
     if(oldData!= null){
       const  parseData = JSON.parse(oldData);
