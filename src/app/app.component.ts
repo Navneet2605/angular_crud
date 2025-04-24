@@ -6,7 +6,7 @@ import { EmployeeModel } from './model/Employee';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet , ReactiveFormsModule],
+  imports: [ ReactiveFormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -80,5 +80,9 @@ export class AppComponent {
           this.employeeList.splice(index, 1);
           localStorage.setItem("EmpData", JSON.stringify(this.employeeList));
         }
+      }
+      onReset() {
+        this.employeeObj = new EmployeeModel();  
+        this.createForm();       
       }
 }

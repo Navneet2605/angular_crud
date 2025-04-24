@@ -9,7 +9,7 @@ export class EmployeeModel{
     pinCode : string;
 
     constructor(){
-        this.empId=1;
+        this.empId=0;
         this.name ='';
         this.city ='';
         this.state='';

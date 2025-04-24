@@ -80,10 +80,10 @@
         </div>
         <div class="row pt-2">
           <div class="col-6 text-centre">
-            <button class="btn btn-secondary" >Reset</button>
+            <button class="btn btn-secondary" (click)="onReset()" >Reset</button>
           </div>
           <div class="col-6 text-centre">
-            @if(employeeForm.controls['empId'].value == '1'){
+            @if(employeeForm.controls['empId'].value == '0'){
               <button class="btn btn-success" (click)="onSave()">Save</button>
             }@else{
               <button class="btn btn-warning" (click)="onUpdate()">Update</button>
